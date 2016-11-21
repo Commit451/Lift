@@ -9,6 +9,7 @@ import android.support.annotation.NonNull;
 
 /**
  * Lift, an overall Application version checker.
+ * @see <a href="https://github.com/Commit451/Lift">https://github.com/Commit451/Lift</a>
  */
 public class Lift {
 
