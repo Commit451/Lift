@@ -14,12 +14,16 @@ Lift.check(this, new Lift.Callback() {
     @Override
     public void onUpgrade(int oldVersion, int newVersion) {
         if (oldVersion == 100 && newVersion == 101) {
-            Toast.makeText(App.this, "Upgrading from 100 to 101", Toast.LENGTH_SHORT)
-                    .show();
+            prefs.clear();
+            MigrationUtil.migrateToRealm();
+            //etc.
         }
     }
 });
 ```
+
+# Note
+Due to the way that the version is stored in `SharedPreferences`, if you are adding Lift to an existing app, it will never get the first call to `onUpgrade`. This is due to the fact that we would not be able to reliably
 
 License
 --------
