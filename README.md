@@ -21,9 +21,10 @@ Lift.check(this, new Lift.Callback() {
     }
 });
 ```
+Even if you do not have a needed upgrade right away, you should add the `check` and callback to your app so that it starts tracking the current version of the app for when you do eventually want to provide an upgrade. 
 
 # Note
-Due to the way that the version is stored in `SharedPreferences`, if you are adding Lift to an existing app, it will never get the first call to `onUpgrade`. This is due to the fact that we would not be able to reliably
+Due to the way that the version is stored in `SharedPreferences`, if you are adding Lift to an existing app, it will get the first call to `onUpgrade` where the `oldVersion` value is equal to `VERSION_NOT_STORED` (-1).
 
 License
 --------
