@@ -3,6 +3,7 @@
     package="com.commit451.lift.sample">
 
     <application
+        android:fullBackupContent="@xml/my_backup_rules"
         android:name=".App"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"

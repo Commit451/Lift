@@ -22,6 +22,20 @@ Lift.check(this, new Lift.Callback() {
 });
 ```
 
+# Auto Backup
+If you are using [auto backup](https://developer.android.com/guide/topics/data/autobackup.html), you will want to add rules for Lift. See the sample project for a full example, but it should look like this:
+
+Change your manifest to `android:fullBackupContent="@xml/my_backup_rules"`
+
+And your `my_backup_rules` should look like:
+```xml
+<?xml version="1.0" encoding="utf-8"?>
+<full-backup-content>
+    <exclude domain="sharedpref" path="lift.xml"/>
+</full-backup-content>
+
+```
+
 # Note
 Due to the way that the version is stored in `SharedPreferences`, if you are adding Lift to an existing app, it will never get the first call to `onUpgrade`. This is due to the fact that we would not be able to reliably
 

@@ -13,7 +13,7 @@ import android.support.annotation.NonNull;
  */
 public class Lift {
 
-    private static final String FILE_NAME = "lift_file_plz_dont_touch";
+    private static final String FILE_NAME = "lift";
     private static final String KEY_VERSION = "version";
 
     /**
