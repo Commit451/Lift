@@ -6,9 +6,11 @@ import android.content.SharedPreferences;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 
 /**
  * Lift, an overall Application version checker.
+ *
  * @see <a href="https://github.com/Commit451/Lift">https://github.com/Commit451/Lift</a>
  */
 public class Lift {
@@ -22,13 +24,23 @@ public class Lift {
     public static final int VERSION_NOT_STORED = -1;
 
     /**
+     * Keep track of the version changes, storing them properly for use with later version changes.
+     * This is the same as calling {@link #check(Context, Callback)} with no callback
+     *
+     * @param context context
+     */
+    public static void track(@NonNull Context context) {
+        check(context, null);
+    }
+
+    /**
      * Check on if an upgrade is needed. Typically called in {@link Application#onCreate()} as early
      * as possible so that you can properly upgrade your app from one version to the next
      *
-     * @param context  the application context.
+     * @param context  context
      * @param callback callback to call to perform the upgrade
      */
-    public static void check(@NonNull Context context, @NonNull Callback callback) {
+    public static void check(@NonNull Context context, @Nullable Callback callback) {
         SharedPreferences prefs = context.getSharedPreferences(FILE_NAME, Context.MODE_PRIVATE);
         int storedVersion = prefs.getInt(KEY_VERSION, VERSION_NOT_STORED);
         int currentVersion;
@@ -39,7 +51,9 @@ public class Lift {
             throw new RuntimeException("Unable to check version in Lift. Perhaps you are using the wrong context?", e);
         }
         if (storedVersion < currentVersion) {
-            callback.onUpgrade(storedVersion, currentVersion);
+            if (callback != null) {
+                callback.onUpgrade(storedVersion, currentVersion);
+            }
             storeVersion(prefs, currentVersion);
         }
     }
@@ -56,6 +70,7 @@ public class Lift {
         /**
          * Called when a new version of the app has been updated to. Perform update logic here. Will
          * only be called once when the user updates.
+         *
          * @param oldVersion the old app version. This can be {@link Lift#VERSION_NOT_STORED} if
          *                   this is the first time the app has run {@link Lift#check(Context, Callback)}
          * @param newVersion the new/current app version
