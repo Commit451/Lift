@@ -13,8 +13,8 @@ class App : Application() {
             if (oldVersion == Lift.VERSION_NOT_STORED) {
                 Toast.makeText(this@App, "This must be a first app launch. Nice", Toast.LENGTH_SHORT)
                         .show()
-            } else if (oldVersion == 101 && newVersion == 102) {
-                Toast.makeText(this@App, "Upgrading from 100 to 101", Toast.LENGTH_SHORT)
+            } else if (oldVersion != newVersion) {
+                Toast.makeText(this@App, "Upgrading from $oldVersion to $newVersion", Toast.LENGTH_SHORT)
                         .show()
             }
         }

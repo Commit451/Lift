@@ -3,8 +3,6 @@ package com.commit451.lift
 import android.app.Application
 import android.content.Context
 import android.content.SharedPreferences
-import android.content.pm.PackageInfo
-import android.content.pm.PackageManager
 
 /**
  * Lift, an overall Application version checker.
