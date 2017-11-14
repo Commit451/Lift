@@ -1,5 +1,1 @@
-<manifest xmlns:android="http://schemas.android.com/apk/res/android" package="com.commit451.lift">
-
-    <application />
-
-</manifest>
+<manifest package="com.commit451.lift"/>
