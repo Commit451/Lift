@@ -10,7 +10,7 @@ When upgrading a database, you get callbacks such as `onUpgrade(oldVersion, newV
 
 ```kotlin
 //Within Application.onCreate()
-Lift.check(this) { oldVersion, newVersion ->
+Lift.check(this, { oldVersion, newVersion ->
     if (oldVersion == Lift.VERSION_NOT_STORED) {
         Toast.makeText(this@App, "This must be a first app launch. Nice", Toast.LENGTH_SHORT)
                 .show()
@@ -18,7 +18,7 @@ Lift.check(this) { oldVersion, newVersion ->
         Toast.makeText(this@App, "Upgrading from 100 to 101", Toast.LENGTH_SHORT)
                 .show()
     }
-}
+})
 ```
 Even if you do not have a needed upgrade right away, you should add the `check` and callback to your app so that it starts tracking the current version of the app for when you do eventually want to provide an upgrade. 
 
