@@ -1,10 +1,30 @@
 # Lift
 Simple Android Application update logic component
 
-[![Build Status](https://travis-ci.org/Commit451/Lift.svg?branch=master)](https://travis-ci.org/Commit451/Lift) [![](https://jitpack.io/v/Commit451/Lift.svg)](https://jitpack.io/#Commit451/Lift)
+[![](https://jitpack.io/v/Commit451/Lift.svg)](https://jitpack.io/#Commit451/Lift)
 
 # About
 When upgrading a database, you get callbacks such as `onUpgrade(oldVersion, newVersion)`. But, these are only useful and usable when you are dealing with database migrations. What about when you need to upgrade `SharedPreferences`, switch from SQLite to Realm, etc? Lift aims to fill those gaps and allow an upgrade path for any possible app version upgrade you might need, making use of the apps version code.
+
+## Gradle Dependency
+
+Add this in your root `build.gradle` file (**not** your module `build.gradle` file):
+
+```gradle
+allprojects {
+	repositories {
+		...
+		maven { url "https://jitpack.io" }
+	}
+}
+```
+
+Then, add the library to your project `build.gradle`
+```gradle
+dependencies {
+    implementation("com.github.Commit451:Lift:latest.version.here")
+}
+```
 
 # Usage
 
@@ -37,12 +57,12 @@ And your `my_backup_rules` should look like:
 ```
 
 # Note
-Due to the way that the version is stored in `SharedPreferences`, if you are adding Lift to an existing app, and also for the first time the user launches your app, the first callback will have the `oldVersion` value is equal to `VERSION_NOT_STORED` (-1). Make sure you are accounting for this as needed
+Due to the way that the version is stored in `SharedPreferences`, if you are adding Lift to an existing app, and also for the first time the user launches your app, the first callback will have the `oldVersion` and `newVersion` values equal to `Lift.VERSION_NOT_STORED` (-1). Make sure you are accounting for this as needed
 
 License
 --------
 
-    Copyright 2017 Commit 451
+    Copyright 2021 Commit 451
 
     Licensed under the Apache License, Version 2.0 (the "License");
     you may not use this file except in compliance with the License.

@@ -5,6 +5,7 @@ import android.widget.Toast
 
 import com.commit451.lift.Lift
 
+@Suppress("unused")
 class App : Application() {
 
     override fun onCreate() {
